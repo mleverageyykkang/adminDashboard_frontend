@@ -1,5 +1,5 @@
 import Dashboard from "views/Dashboard.js";
-import UserProfile from "views/UserProfile.js";
+import UserProfile from "views/User.js";
 import Notifications from "views/Notifications.js";
 import AccountList from "views/AccountList";
 import { Children } from "react";
