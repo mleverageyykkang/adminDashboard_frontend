@@ -1,8 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cacf0e0f.css",
-    "main.js": "/static/js/main.033cc499.js",
-    "static/media/photo-1431578500526-4d9613015464.jpeg": "/static/media/photo-1431578500526-4d9613015464.0c528dc7193509e0eef6.jpeg",
+    "main.css": "/static/css/main.5dcd3ad1.css",
+    "main.js": "/static/js/main.f1e9d6e0.js",
     "static/media/fa-solid-900.svg": "/static/media/fa-solid-900.0454203f26b33fc02e2b.svg",
     "static/media/fa-brands-400.svg": "/static/media/fa-brands-400.991c1c761fc31f9c3252.svg",
     "static/media/fa-solid-900.eot": "/static/media/fa-solid-900.6606667d9800a27eb8b5.eot",
@@ -20,7 +19,6 @@
     "static/media/fa-regular-400.ttf": "/static/media/fa-regular-400.ac2367644e559de4ff33.ttf",
     "static/media/nucleo-icons.eot": "/static/media/nucleo-icons.541f8898b990ff017268.eot",
     "static/media/nucleo-icons.ttf": "/static/media/nucleo-icons.a30d0b0201482fcfffd3.ttf",
-    "static/media/face-3.jpg": "/static/media/face-3.62232de2613c3869ca4c.jpg",
     "static/media/fa-regular-400.woff": "/static/media/fa-regular-400.ea5a41ec4a24ce93298e.woff",
     "static/media/nucleo-icons.woff": "/static/media/nucleo-icons.141e0c4652975b501bab.woff",
     "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.2c154b0f8c0d8d166162.woff2",
@@ -29,7 +27,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.cacf0e0f.css",
-    "static/js/main.033cc499.js"
+    "static/css/main.5dcd3ad1.css",
+    "static/js/main.f1e9d6e0.js"
   ]
 }

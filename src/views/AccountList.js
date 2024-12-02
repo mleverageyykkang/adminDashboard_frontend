@@ -60,7 +60,7 @@ function AccountList() {
     <>
       <Container fluid>
         <Row>
-          <Col md="12">
+          <Col>
             <Card className="strpied-tabled-with-hover ">
               <Card.Header>
                 <Card.Title as="h4">계정 리스트</Card.Title>
