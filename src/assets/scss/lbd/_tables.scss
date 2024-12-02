@@ -1,5 +1,4 @@
 .table{
-
    .radio,
    .checkbox{
         position: relative;
@@ -33,7 +32,8 @@
         padding-bottom: 5px;
         border-top: none !important;
         border-bottom: none;
-        text-align: left !important;
+        // border : 1px #9A9A9A solid;
+        text-align: center !important;
     }
 
    .td-actions .btn{
@@ -60,15 +60,6 @@
 
     .btn:focus{
         box-shadow: none !important;
-    }
-}
-.table-upgrade{
-    .table{
-        tr{
-            td{
-                width: 100%
-            }
-        }
     }
 }
 
