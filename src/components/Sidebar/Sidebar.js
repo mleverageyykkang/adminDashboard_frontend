@@ -31,6 +31,25 @@ function Sidebar({ color, image, routes }) {
                     <i className={prop.icon} />
                     <p>{prop.name}</p>
                   </NavLink>
+                  {prop.children && (
+                    <ul className="nested-nav">
+                      {prop.children.map((child) => (
+                        <li
+                          key={child.uid}
+                          className={activeRoute(child.path)}
+                          style={{ listStyleType: "none" }}
+                        >
+                          <NavLink
+                            to={child.layout + child.path}
+                            className="nav-link"
+                            activeClassName="active"
+                          >
+                            <p>{child.name}</p>
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               );
             return null;

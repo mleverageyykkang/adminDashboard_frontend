@@ -59,7 +59,7 @@ function Header() {
             onClick={(e) => e.preventDefault()}
             className="mr-2"
           >
-            {getBrandText()}s
+            {getBrandText()}
           </Navbar.Brand>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">

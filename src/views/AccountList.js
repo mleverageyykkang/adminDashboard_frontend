@@ -1,7 +1,11 @@
 import React from "react";
 import { Card, Table, Container, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function AccountList() {
+  const { uid } = useParams();
+  // const userAccount = accountList.find((item) => item.userid === userid);
+  // if(!userAccount){ }
   const tableExample = [
     {
       advertiser: {
@@ -60,9 +64,7 @@ function AccountList() {
             <Card className="strpied-tabled-with-hover ">
               <Card.Header>
                 <Card.Title as="h4">계정 리스트</Card.Title>
-                <p className="card-category">
-                  Here is a subtitle for this table
-                </p>
+                <p className="card-category">{/* 여기에 USERid 명 적기  */}</p>
               </Card.Header>
               <Card.Body className="table-full-width px-0 table-responsive">
                 <Table className="table-hover table-striped text-nowrap">

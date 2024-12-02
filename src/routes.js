@@ -2,6 +2,7 @@ import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile.js";
 import Notifications from "views/Notifications.js";
 import AccountList from "views/AccountList";
+import { Children } from "react";
 
 const dashboardRoutes = [
   {
@@ -25,6 +26,31 @@ const dashboardRoutes = [
     icon: "nc-icon nc-notes",
     component: AccountList,
     layout: "/admin",
+    //유저(마케터) 정보 - 로그인 시
+    children: [
+      {
+        uid: "user1",
+        path: "/user1",
+        name: "User 1",
+        component: AccountList,
+        layout: "/admin",
+        role: "admin",
+      },
+      {
+        uid: "user2",
+        path: "/user2",
+        name: "User 2",
+        component: AccountList,
+        layout: "/admin",
+      },
+      {
+        uid: "user3",
+        path: "/user3",
+        name: "User 3",
+        component: AccountList,
+        layout: "/admin",
+      },
+    ],
   },
   {
     path: "/notifications",
