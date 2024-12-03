@@ -98,7 +98,7 @@ function Header() {
             <Nav.Item>
               <Nav.Link
                 className="m-0"
-                href="#"
+                href="/login"
                 onClick={(e) => e.preventDefault()}
               >
                 <span className="no-icon">Log out</span>
