@@ -45,6 +45,50 @@ function User() {
       mbti: "ESFJ",
     },
   ];
+  const positionSelect = [
+    {
+      uuid: "1",
+      value: "대표",
+    },
+    {
+      uuid: "2",
+      value: "실장",
+    },
+    {
+      uuid: "3",
+      value: "부장",
+    },
+    {
+      uuid: "4",
+      value: "차장",
+    },
+    {
+      uuid: "5",
+      value: "대리",
+    },
+    {
+      uuid: "6",
+      value: "사원",
+    },
+  ];
+  const departmentSelect = [
+    {
+      uuid: "1",
+      value: "본부",
+    },
+    {
+      uuid: "2",
+      value: "경영관리",
+    },
+    {
+      uuid: "3",
+      value: "개발",
+    },
+    {
+      uuid: "4",
+      value: "마케팅",
+    },
+  ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
   const count = 10; // context>count를 통해 백에서 받음.
@@ -170,41 +214,37 @@ function User() {
                                 />
                               </td>
                               <td>
-                                <input
-                                  type="text"
-                                  value={editedRow.positionUuid}
+                                <select
+                                  name="positionSelect"
                                   onChange={(e) =>
                                     handleChange(e, "positionUuid")
                                   }
-                                />
+                                >
+                                  <option value="" disabled selected>
+                                    직책 선택
+                                  </option>
+                                  {positionSelect.map((pos) => (
+                                    <option key={pos.uuid} value={pos.uuid}>
+                                      {pos.value}
+                                    </option>
+                                  ))}
+                                </select>
                               </td>
                               <td>
-                                {/* <input
-                                  type="text"
-                                  value={editedRow.dpt}
-                                  onChange={(e) => handleChange(e, "dpt")}
-                                /> */}
                                 <select
-                                  name="부서"
-                                  id="departmentUuid"
-                                  onChange={(e) => {
-                                    handleChange(e, "departmentUuid");
-                                    console.log(e);
-                                  }}
+                                  name="departmentSelect"
+                                  onChange={(e) =>
+                                    handleChange(e, "departmentUuid")
+                                  }
                                 >
-                                  {/* <option selected>{row.departmentUuid}</option> */}
-                                  <option id="1" value="마케팅">
-                                    마케팅
+                                  <option value="" disabled selected>
+                                    부서 선택
                                   </option>
-                                  <option id="2" value="개발">
-                                    개발
-                                  </option>
-                                  <option id="3" value="경영관리">
-                                    경영관리
-                                  </option>
-                                  <option id="4" value="본부">
-                                    본부
-                                  </option>
+                                  {departmentSelect.map((dpt) => (
+                                    <option key={dpt.uuid} value={dpt.uuid}>
+                                      {dpt.value}
+                                    </option>
+                                  ))}
                                 </select>
                               </td>
                               <td>
@@ -272,8 +312,20 @@ function User() {
                               <td>{row.name}</td>
                               <td>{row.code}</td>
                               <td>{row.birthday}</td>
-                              <td>{row.positionUuid}</td>
-                              <td>{row.departmentUuid}</td>
+                              <td>
+                                {
+                                  positionSelect.find(
+                                    (pos) => pos.uuid == row.positionUuid
+                                  )?.value
+                                }
+                              </td>
+                              <td>
+                                {
+                                  departmentSelect.find(
+                                    (dpt) => dpt.uuid == row.departmentUuid
+                                  )?.value
+                                }
+                              </td>
                               <td>{row.phone}</td>
                               <td>{row.directPhone}</td>
                               <td>{row.companyEmail}</td>
