@@ -38,8 +38,8 @@ function Sidebar({ color, image, routes }) {
                     activeClassName="active font-weight-bold"
                     onClick={(e) => {
                       if (prop.items) {
-                        e.preventDefault(); // 기본 링크 동작 방지
-                        toggleItems(key); // 아이템 열기/닫기
+                        e.preventDefault();
+                        toggleItems(key); 
                       }
                     }}
                   >

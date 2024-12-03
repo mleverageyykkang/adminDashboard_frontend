@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "routes.js";
@@ -95,14 +95,13 @@ function Header() {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Nav.Item>
-              <Nav.Link
-                className="m-0"
-                href="/login"
-                onClick={(e) => e.preventDefault()}
-              >
+            <Nav.Item
+              className="d-flex align-items-center"
+              onclick={() => alert("로그아웃")}
+            >
+              <NavLink to="/login">
                 <span className="no-icon">Log out</span>
-              </Nav.Link>
+              </NavLink>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

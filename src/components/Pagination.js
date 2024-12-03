@@ -12,9 +12,9 @@ const Pagination = ({ page, count, setPage, pageSize }) => {
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
-    // 현재 페이지를 기준으로 3개의 페이지를 표시 (앞, 현재, 뒤)
-    const startPage = Math.max(1, page - 9);
-    const endPage = Math.min(totalPages, page + 9);
+    // 현재 페이지 기준으로 표시할 페이지 번호 계산
+    const startPage = Math.floor((page - 1) / 10) * 10 + 1;
+    const endPage = Math.min(startPage + 9, totalPages);
 
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
@@ -48,7 +48,7 @@ const Pagination = ({ page, count, setPage, pageSize }) => {
       }}
     >
       <button
-        onClick={() => handleClick(page - 1)}
+        onClick={() => handleClick(Math.max(1, page - 10))}
         disabled={page === 1}
         style={{
           margin: "0 5px",
@@ -64,7 +64,7 @@ const Pagination = ({ page, count, setPage, pageSize }) => {
       </button>
       {renderPageNumbers()}
       <button
-        onClick={() => handleClick(page + 1)}
+        onClick={() => handleClick(Math.min(totalPages, page + 10))}
         disabled={page === totalPages}
         style={{
           margin: "0 5px",

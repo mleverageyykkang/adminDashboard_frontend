@@ -47,7 +47,7 @@ function User() {
   ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
-  const count = 100;
+  const count = 10; // context>count를 통해 백에서 받음.
   const pageSize = 10;
   const [editingRow, setEditingRow] = useState(null);
   const [editedRow, setEditedRow] = useState({});
@@ -86,12 +86,12 @@ function User() {
       <Container fluid>
         <Row>
           <Col>
-            <Card className="strpied-tabled-with-hover ">
+            <Card className="strpied-tabled-with-hover">
               <Card.Header className="d-flex justify-content-end">
                 <div onClick={() => {}}>
                   <i
                     className="nc-icon nc-zoom-split "
-                    style={{ fontSize: "20px", padding: "0.7rem" }}
+                    style={{ fontSize: "20px", padding: "0.7rem 30px" }}
                   />
                 </div>
                 <Dropdown>
@@ -101,7 +101,7 @@ function User() {
                     data-toggle="dropdown"
                     id="navbarDropdownMenuLink"
                     variant="default"
-                    className="m-0 text-primary rounded border"
+                    className="m-0 rounded border"
                   >
                     <i className="nc-icon nc-align-left-2 mr-1" />
                     <span>정렬</span>
@@ -115,6 +115,14 @@ function User() {
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
+                <button
+                  className="ml-2 border-0 bg-primary-subtle rounded"
+                  onClick={() => {
+                    alert("등록버튼");
+                  }}
+                >
+                  등록
+                </button>
               </Card.Header>
               <Card.Body className="table-full-width px-0 table-responsive">
                 <Table className="table-hover table-striped text-nowrap text-center">
