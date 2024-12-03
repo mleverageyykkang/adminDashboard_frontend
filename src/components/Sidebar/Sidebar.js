@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import logo from "../../assets/img/ml_logo.png";
 
 function Sidebar({ color, image, routes }) {
   const location = useLocation();
@@ -21,9 +22,7 @@ function Sidebar({ color, image, routes }) {
     <div className="sidebar" data-image={image} data-color={color}>
       <div className="sidebar-wrapper">
         <div className="logo d-flex align-items-center justify-content-start">
-          <a className="simple-text" href="#" style={{ color: "#f86400" }}>
-            Marketing Leverage
-          </a>
+          <img src={logo} alt="logo" className="w-100" />
         </div>
         <Nav>
           {routes.map((prop, key) => {

@@ -1,43 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Table, Dropdown } from "react-bootstrap";
 import Pagination from "../components/Pagination";
+import "../assets/scss/custom/user.scss";
 
 function User() {
   const tableExample = [
     {
+      uuid: "1",
       name: "홍길동",
-      code: "01",
-      birth: "20000101",
-      position: "사원",
-      dpt: "마케팅",
+      code: 1,
+      birthday: "20000101",
+      positionUuid: "1",
+      departmentUuid: "1",
       phone: "010-1234-1234",
-      tel: "02-0000-0000",
-      businessEmail: "asd@mleverage.co.kr",
-      email: "asd@naver.com",
+      directPhone: "02-0000-0000",
+      companyEmail: "asd@mleverage.co.kr",
+      personalEmail: "asd@naver.com",
       mbti: "ESFJ",
     },
     {
+      uuid: "2",
       name: "홍길동",
-      code: "01",
-      birth: "20000101",
-      position: "사원",
-      dpt: "마케팅",
+      code: 2,
+      birthday: "20000101",
+      positionUuid: "1",
+      departmentUuid: "1",
       phone: "010-1234-1234",
-      tel: "02-0000-0000",
-      businessEmail: "asd@mleverage.co.kr",
-      email: "asd@naver.com",
+      directPhone: "02-0000-0000",
+      companyEmail: "asd@mleverage.co.kr",
+      personalEmail: "asd@naver.com",
       mbti: "ESFJ",
     },
     {
+      uuid: "3",
       name: "홍길동",
-      code: "01",
-      birth: "20000101",
-      position: "사원",
-      dpt: "마케팅",
+      code: 3,
+      birthday: "20000101",
+      positionUuid: "1",
+      departmentUuid: "1",
       phone: "010-1234-1234",
-      tel: "02-0000-0000",
-      businessEmail: "asd@mleverage.co.kr",
-      email: "asd@naver.com",
+      directPhone: "02-0000-0000",
+      companyEmail: "asd@mleverage.co.kr",
+      personalEmail: "asd@naver.com",
       mbti: "ESFJ",
     },
   ];
@@ -50,13 +54,13 @@ function User() {
 
   const handleEditClick = (id) => {
     setEditingRow(id);
-    const rowToEdit = tableExample.find((row) => row.code === id);
+    const rowToEdit = data.find((row) => row.uuid === id);
     setEditedRow({ ...rowToEdit });
   };
 
   const handleSaveClick = (id) => {
     setData((prevData) =>
-      prevData.map((row) => (row.code === id ? { ...editedRow } : row))
+      prevData.map((row) => (row.uuid === id ? { ...editedRow } : row))
     );
     setEditingRow(null);
   };
@@ -71,9 +75,12 @@ function User() {
   };
   const handleDeleteClick = (id) => {
     setData((prevData) => {
-      prevData.filter((row) => row.code !== id);
+      return prevData.filter((row) => row.uuid !== id);
     });
   };
+  useEffect(() => {
+    console.log("실시간:", data);
+  }, [data]);
   return (
     <>
       <Container fluid>
@@ -130,8 +137,8 @@ function User() {
                   <tbody>
                     {data &&
                       data.map((row) => (
-                        <tr key={row.code}>
-                          {editingRow === row.code ? (
+                        <tr key={row.uuid}>
+                          {editingRow === row.uuid ? (
                             <>
                               <td>
                                 <input
@@ -144,29 +151,53 @@ function User() {
                                 <input
                                   type="text"
                                   value={editedRow.code}
-                                  onChange={(e) => handleChange(e, "email")}
+                                  onChange={(e) => handleChange(e, "code")}
                                 />
                               </td>
                               <td>
                                 <input
                                   type="text"
-                                  value={editedRow.birth}
-                                  onChange={(e) => handleChange(e, "birth")}
+                                  value={editedRow.birthday}
+                                  onChange={(e) => handleChange(e, "birthday")}
                                 />
                               </td>
                               <td>
                                 <input
                                   type="text"
-                                  value={editedRow.position}
-                                  onChange={(e) => handleChange(e, "position")}
+                                  value={editedRow.positionUuid}
+                                  onChange={(e) =>
+                                    handleChange(e, "positionUuid")
+                                  }
                                 />
                               </td>
                               <td>
-                                <input
+                                {/* <input
                                   type="text"
                                   value={editedRow.dpt}
                                   onChange={(e) => handleChange(e, "dpt")}
-                                />
+                                /> */}
+                                <select
+                                  name="부서"
+                                  id="departmentUuid"
+                                  onChange={(e) => {
+                                    handleChange(e, "departmentUuid");
+                                    console.log(e);
+                                  }}
+                                >
+                                  {/* <option selected>{row.departmentUuid}</option> */}
+                                  <option id="1" value="마케팅">
+                                    마케팅
+                                  </option>
+                                  <option id="2" value="개발">
+                                    개발
+                                  </option>
+                                  <option id="3" value="경영관리">
+                                    경영관리
+                                  </option>
+                                  <option id="4" value="본부">
+                                    본부
+                                  </option>
+                                </select>
                               </td>
                               <td>
                                 <input
@@ -178,24 +209,28 @@ function User() {
                               <td>
                                 <input
                                   type="text"
-                                  value={editedRow.tel}
-                                  onChange={(e) => handleChange(e, "tel")}
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  type="text"
-                                  value={editedRow.businessEmail}
+                                  value={editedRow.directPhone}
                                   onChange={(e) =>
-                                    handleChange(e, "businessEmail")
+                                    handleChange(e, "directPhone")
                                   }
                                 />
                               </td>
                               <td>
                                 <input
                                   type="text"
-                                  value={editedRow.email}
-                                  onChange={(e) => handleChange(e, "email")}
+                                  value={editedRow.companyEmail}
+                                  onChange={(e) =>
+                                    handleChange(e, "companyEmail")
+                                  }
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  type="text"
+                                  value={editedRow.personalEmail}
+                                  onChange={(e) =>
+                                    handleChange(e, "personalEmail")
+                                  }
                                 />
                               </td>
                               <td>
@@ -207,17 +242,17 @@ function User() {
                               </td>
                               <td>
                                 <button
-                                  className="border rounded border-0 bg-primary text-white"
+                                  className="border rounded border-0 bg-primary text-white mr-2"
                                   onClick={() =>
                                     confirm("저장하시겠습니까?")
-                                      ? handleSaveClick(row.code)
+                                      ? handleSaveClick(row.uuid)
                                       : false
                                   }
                                 >
                                   저장
                                 </button>
                                 <button
-                                  className="border rounded border-0 bg-white "
+                                  className="border rounded border-muted bg-white "
                                   onClick={handleCancelClick}
                                 >
                                   취소
@@ -228,18 +263,18 @@ function User() {
                             <>
                               <td>{row.name}</td>
                               <td>{row.code}</td>
-                              <td>{row.birth}</td>
-                              <td>{row.position}</td>
-                              <td>{row.dpt}</td>
+                              <td>{row.birthday}</td>
+                              <td>{row.positionUuid}</td>
+                              <td>{row.departmentUuid}</td>
                               <td>{row.phone}</td>
-                              <td>{row.tel}</td>
-                              <td>{row.businessEmail}</td>
-                              <td>{row.email}</td>
+                              <td>{row.directPhone}</td>
+                              <td>{row.companyEmail}</td>
+                              <td>{row.personalEmail}</td>
                               <td>{row.mbti}</td>
                               <td>
                                 <button
                                   className="border rounded border-0 bg-primary text-white"
-                                  onClick={() => handleEditClick(row.code)}
+                                  onClick={() => handleEditClick(row.uuid)}
                                 >
                                   수정
                                 </button>
@@ -251,7 +286,7 @@ function User() {
                               className="border rounded border-0 text-white bg-danger"
                               onClick={() => {
                                 confirm("정말 삭제하시겠습니까?")
-                                  ? handleDeleteClick(row.code)
+                                  ? handleDeleteClick(row.uuid)
                                   : false;
                               }}
                             >
