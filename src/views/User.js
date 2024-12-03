@@ -5,46 +5,22 @@ import "../assets/scss/custom/user.scss";
 
 function User() {
   const tableExample = [
-    {
-      uuid: "1",
+    // dummy data 100개
+    ...Array.from({ length: 100 }, (_, index) => ({
+      uuid: (index + 1).toString(),
       name: "홍길동",
-      code: 1,
-      birthday: "20000101",
-      positionUuid: "1",
-      departmentUuid: "1",
-      phone: "010-1234-1234",
+      code: index + 1,
+      birthday: `2000010${index + 1}`,
+      positionUuid: "2",
+      departmentUuid: "3",
+      phone: "010-1111-1111",
       directPhone: "02-0000-0000",
-      companyEmail: "asd@mleverage.co.kr",
-      personalEmail: "asd@naver.com",
-      mbti: "ESFJ",
-    },
-    {
-      uuid: "2",
-      name: "홍길동",
-      code: 2,
-      birthday: "20000101",
-      positionUuid: "1",
-      departmentUuid: "1",
-      phone: "010-1234-1234",
-      directPhone: "02-0000-0000",
-      companyEmail: "asd@mleverage.co.kr",
-      personalEmail: "asd@naver.com",
-      mbti: "ESFJ",
-    },
-    {
-      uuid: "3",
-      name: "홍길동",
-      code: 3,
-      birthday: "20000101",
-      positionUuid: "1",
-      departmentUuid: "1",
-      phone: "010-1234-1234",
-      directPhone: "02-0000-0000",
-      companyEmail: "asd@mleverage.co.kr",
-      personalEmail: "asd@naver.com",
-      mbti: "ESFJ",
-    },
+      companyEmail: `email${index + 1}@mleverage.co.kr`,
+      personalEmail: `email${index + 1}@naver.com`,
+      mbti: "INTP",
+    })),
   ];
+
   const positionSelect = [
     {
       uuid: "1",
@@ -91,8 +67,8 @@ function User() {
   ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
-  const totalCount = 3; // context>count를 통해 백에서 받음.
-  const pageSize = 1;
+  const pageSize = 10;
+  const currentPageData = data.slice((page - 1) * pageSize, page * pageSize);
   const [editingRow, setEditingRow] = useState(null);
   const [editedRow, setEditedRow] = useState({});
 
@@ -187,8 +163,8 @@ function User() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data &&
-                      data.map((row) => (
+                    {currentPageData &&
+                      currentPageData.map((row) => (
                         <tr key={row.uuid}>
                           {editingRow === row.uuid ? (
                             <>
@@ -220,7 +196,7 @@ function User() {
                                     handleChange(e, "positionUuid")
                                   }
                                 >
-                                  <option value="" disabled selected>
+                                  <option value="" disabled defaultValue>
                                     직책 선택
                                   </option>
                                   {positionSelect.map((pos) => (
@@ -237,7 +213,7 @@ function User() {
                                     handleChange(e, "departmentUuid")
                                   }
                                 >
-                                  <option value="" disabled selected>
+                                  <option value="" disabled defaultValue>
                                     부서 선택
                                   </option>
                                   {departmentSelect.map((dpt) => (
@@ -363,7 +339,7 @@ function User() {
         </Row>
         <Pagination
           page={page}
-          totalCount={totalCount}
+          totalCount={data.length}
           pageSize={pageSize}
           setPage={setPage}
         />

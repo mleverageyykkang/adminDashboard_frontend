@@ -1,7 +1,7 @@
 import React from "react";
 
-const Pagination = ({ page, count, setPage, pageSize }) => {
-  const totalPages = Math.ceil(count / pageSize);
+const Pagination = ({ page, totalCount, setPage, pageSize }) => {
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   const handleClick = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
