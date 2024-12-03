@@ -91,7 +91,7 @@ function User() {
   ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
-  const count = 3; // context>count를 통해 백에서 받음.
+  const totalCount = 3; // context>count를 통해 백에서 받음.
   const pageSize = 1;
   const [editingRow, setEditingRow] = useState(null);
   const [editedRow, setEditedRow] = useState({});
@@ -363,7 +363,7 @@ function User() {
         </Row>
         <Pagination
           page={page}
-          count={count}
+          totalCount={totalCount}
           pageSize={pageSize}
           setPage={setPage}
         />
