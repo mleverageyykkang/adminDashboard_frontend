@@ -33,7 +33,7 @@ function LoginPage() {
       }}
     >
       <div>
-        <img src={logo} alt="" className="mb-5" />
+        <img src={logo} alt="" className="mb-5 w-75" />
         {/* <h2>로그인</h2> */}
         <form onSubmit={handleLogin}>
           <div>
@@ -55,7 +55,7 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-75 mb-3"
+              className="w-75 mb-4"
             />
           </div>
           <button

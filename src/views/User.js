@@ -48,51 +48,51 @@ function User() {
   const positionSelect = [
     {
       uuid: "1",
-      value: "대표",
+      name: "대표",
     },
     {
       uuid: "2",
-      value: "실장",
+      name: "실장",
     },
     {
       uuid: "3",
-      value: "부장",
+      name: "부장",
     },
     {
       uuid: "4",
-      value: "차장",
+      name: "차장",
     },
     {
       uuid: "5",
-      value: "대리",
+      name: "대리",
     },
     {
       uuid: "6",
-      value: "사원",
+      name: "사원",
     },
   ];
   const departmentSelect = [
     {
       uuid: "1",
-      value: "본부",
+      name: "본부",
     },
     {
       uuid: "2",
-      value: "경영관리",
+      name: "경영관리",
     },
     {
       uuid: "3",
-      value: "개발",
+      name: "개발",
     },
     {
       uuid: "4",
-      value: "마케팅",
+      name: "마케팅",
     },
   ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
-  const count = 10; // context>count를 통해 백에서 받음.
-  const pageSize = 10;
+  const count = 3; // context>count를 통해 백에서 받음.
+  const pageSize = 1;
   const [editingRow, setEditingRow] = useState(null);
   const [editedRow, setEditedRow] = useState({});
 
@@ -225,7 +225,7 @@ function User() {
                                   </option>
                                   {positionSelect.map((pos) => (
                                     <option key={pos.uuid} value={pos.uuid}>
-                                      {pos.value}
+                                      {pos.name}
                                     </option>
                                   ))}
                                 </select>
@@ -242,7 +242,7 @@ function User() {
                                   </option>
                                   {departmentSelect.map((dpt) => (
                                     <option key={dpt.uuid} value={dpt.uuid}>
-                                      {dpt.value}
+                                      {dpt.name}
                                     </option>
                                   ))}
                                 </select>
@@ -316,14 +316,14 @@ function User() {
                                 {
                                   positionSelect.find(
                                     (pos) => pos.uuid == row.positionUuid
-                                  )?.value
+                                  )?.name
                                 }
                               </td>
                               <td>
                                 {
                                   departmentSelect.find(
                                     (dpt) => dpt.uuid == row.departmentUuid
-                                  )?.value
+                                  )?.name
                                 }
                               </td>
                               <td>{row.phone}</td>
