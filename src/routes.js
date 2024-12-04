@@ -49,13 +49,13 @@ const dashboardRoutes = [
       },
     ],
   },
-  // {
-  //   path: "/notifications",
-  //   name: "알림",
-  //   icon: "nc-icon nc-bell-55",
-  //   component: Notifications,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/tracking",
+    name: "매출 트래킹",
+    icon: "nc-icon nc-chart-bar-32",
+    component: Notifications,
+    layout: "/admin",
+  },
 ];
 
 export default dashboardRoutes;

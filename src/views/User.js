@@ -6,7 +6,7 @@ import "../assets/scss/custom/user.scss";
 function User() {
   const tableExample = [
     // dummy data 100개
-    ...Array.from({ length: 100 }, (_, index) => ({
+    ...Array.from({ length: 10 }, (_, index) => ({
       uuid: (index + 1).toString(),
       name: "홍길동",
       code: index + 1,
@@ -67,10 +67,11 @@ function User() {
   ];
   const [data, setData] = useState(tableExample);
   const [page, setPage] = useState(1);
-  const pageSize = 10;
+  const pageSize = 3;
   const currentPageData = data.slice((page - 1) * pageSize, page * pageSize);
   const [editingRow, setEditingRow] = useState(null);
   const [editedRow, setEditedRow] = useState({});
+  const [newRow, setNewRow] = useState(null);
 
   const handleEditClick = (id) => {
     setEditingRow(id);
@@ -79,6 +80,9 @@ function User() {
   };
 
   const handleSaveClick = (id) => {
+    if (newRow && editingRow === newRow.uuid) {
+      setNewRow(null);
+    }
     setData((prevData) =>
       prevData.map((row) => (row.uuid === id ? { ...editedRow } : row))
     );
@@ -90,6 +94,11 @@ function User() {
   };
 
   const handleCancelClick = () => {
+    // 수정 중인 행이 새로 추가된 행이고 이를 취소하면 삭제
+    if (newRow && editingRow === newRow.uuid) {
+      setData((prevData) => prevData.filter((row) => row.uuid !== newRow.uuid));
+      setNewRow(null);
+    }
     setEditingRow(null);
     setEditedRow({});
   };
@@ -97,6 +106,30 @@ function User() {
     setData((prevData) => {
       return prevData.filter((row) => row.uuid !== id);
     });
+  };
+  const addNewRow = (id) => {
+    const newRow = {
+      uuid: (data.length + 1).toString(), //추가 후 보냄
+      name: "",
+      code: data.length + 1,
+      birthday: "",
+      positionUuid: "",
+      departmentUuid: "",
+      phone: "",
+      directPhone: "",
+      companyEmail: "",
+      personalEmail: "",
+      mbti: "",
+    };
+    setData((prevData) => {
+      const updatedData = [...prevData, newRow];
+      const newPage = Math.ceil(updatedData.length / pageSize);
+      setPage(newPage); // 해당 페이지로 이동
+      return updatedData;
+    });
+    setNewRow(newRow);
+    setEditingRow(newRow.uuid);
+    setEditedRow(newRow);
   };
   useEffect(() => {
     console.log("실시간:", data);
@@ -137,9 +170,7 @@ function User() {
                 </Dropdown>
                 <button
                   className="ml-2 border-0 bg-primary-subtle rounded"
-                  onClick={() => {
-                    alert("등록버튼");
-                  }}
+                  onClick={addNewRow}
                 >
                   등록
                 </button>
@@ -191,12 +222,17 @@ function User() {
                               </td>
                               <td>
                                 <select
-                                  name="positionSelect"
+                                  value={editedRow.positionUuid || ""}
                                   onChange={(e) =>
                                     handleChange(e, "positionUuid")
                                   }
                                 >
-                                  <option value="" disabled defaultValue>
+                                  <option
+                                    value="직책 선택"
+                                    disabled
+                                    hidden
+                                    defaultValue
+                                  >
                                     직책 선택
                                   </option>
                                   {positionSelect.map((pos) => (
@@ -208,12 +244,17 @@ function User() {
                               </td>
                               <td>
                                 <select
-                                  name="departmentSelect"
+                                  value={editedRow.departmentUuid || ""}
                                   onChange={(e) =>
                                     handleChange(e, "departmentUuid")
                                   }
                                 >
-                                  <option value="" disabled defaultValue>
+                                  <option
+                                    value="부서 선택"
+                                    disabled
+                                    hidden
+                                    defaultValue
+                                  >
                                     부서 선택
                                   </option>
                                   {departmentSelect.map((dpt) => (
